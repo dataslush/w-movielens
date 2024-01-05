@@ -1,4 +1,4 @@
-ml-20m*
+data/*
 terraform-project/*
 !terraform-project/*.tf
 service-account/*
