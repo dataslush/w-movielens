@@ -1,1 +1,4 @@
 ml-20m*
+terraform-project/*
+!terraform-project/*.tf
+service-account/*
