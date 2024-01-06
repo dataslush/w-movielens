@@ -27,6 +27,7 @@ DESCRIPTION="This service account is used for waltlabs movielens interview probl
 DISPLAY_NAME="DataSlush Waltlabs Movielens"
 ROLE_STORAGE="roles/storage.admin"
 ROLE_BIGQUERY="roles/bigquery.admin"
+ROLE_ARTIFACT="roles/artifactregistry.admin"
 CURRENT_FOLDER=$(pwd)
 SERVICE_ACCOUNT_FOLDER="$CURRENT_FOLDER/service-account"
 KEY_FILE_PATH="$SERVICE_ACCOUNT_FOLDER/$SERVICE_ACCOUNT_NAME.json"
@@ -49,6 +50,10 @@ gcloud projects add-iam-policy-binding $PROJECT_ID \
 gcloud projects add-iam-policy-binding $PROJECT_ID \
   --member="serviceAccount:$SERVICE_ACCOUNT_NAME@$PROJECT_ID.iam.gserviceaccount.com" \
   --role="$ROLE_BIGQUERY"
+
+gcloud projects add-iam-policy-binding $PROJECT_ID \
+  --member="serviceAccount:$SERVICE_ACCOUNT_NAME@$PROJECT_ID.iam.gserviceaccount.com" \
+  --role="$ROLE_ARTIFACT"
 
 # Create JSON Key File
 gcloud iam service-accounts keys create $KEY_FILE_PATH \
