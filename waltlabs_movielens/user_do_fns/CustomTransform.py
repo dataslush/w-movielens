@@ -13,12 +13,12 @@ class ReadParseMoviesCSV(beam.DoFn):
                         header_skipped = True
                         continue  # Skip the header line
 
-                movie_id, title, genres = line[0], line[1], line[2]
-                yield {
-                    'movieId': int(movie_id),
-                    'title': title,
-                    'genres': genres.split('|')
-                }
+                    movie_id, title, genres = line[0], line[1], line[2]
+                    yield {
+                        'movieId': int(movie_id),
+                        'title': title,
+                        'genres': genres.split('|')
+                    }
 
 # Custom Transform to parse ratings.csv records
 class ReadParseRatingsCSV(beam.DoFn):
