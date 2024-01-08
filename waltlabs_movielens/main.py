@@ -92,19 +92,19 @@ _ = (
     )
 )
 
-# _ = (
-#     files_to_gcs
-#     | 'Read & Parse Ratings CSV' >> beam.ParDo(ReadParseRatingsCSV())
-#     | 'Write Ratings to BigQuery' >> WriteToBigQuery(
-#         table='ratings',
-#         dataset=options.bq_dataset,
-#         project=options.gcp_project,
-#         schema=RATINGS_SCHEMA,
-#         create_disposition=beam.io.BigQueryDisposition.CREATE_IF_NEEDED,
-#         write_disposition=beam.io.BigQueryDisposition.WRITE_TRUNCATE,
-#         method=beam.io.WriteToBigQuery.Method.FILE_LOADS
-#     )
-# )
+_ = (
+    files_to_gcs
+    | 'Read & Parse Ratings CSV' >> beam.ParDo(ReadParseRatingsCSV())
+    | 'Write Ratings to BigQuery' >> WriteToBigQuery(
+        table='ratings',
+        dataset=options.bq_dataset,
+        project=options.gcp_project,
+        schema=RATINGS_SCHEMA,
+        create_disposition=beam.io.BigQueryDisposition.CREATE_IF_NEEDED,
+        write_disposition=beam.io.BigQueryDisposition.WRITE_TRUNCATE,
+        method=beam.io.WriteToBigQuery.Method.FILE_LOADS
+    )
+)
 
 result = pipeline.run()
 result.wait_until_finish()
