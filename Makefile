@@ -21,19 +21,19 @@ help: ## This is help
 	@echo ${MAKEFILE_LIST}
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
-init: ## Build Bucket for Demo and the Artifact Registry -- Run this One time Only!
-	@gcloud config set project ${GCP_PROJECT}
-	@echo "Enabling Private Google Access in Region ${GCP_REGION} ......"
-	@gcloud compute networks subnets update default \
-	--region=${GCP_REGION} \
-	--enable-private-ip-google-access
-	@echo "Enabling Dataflow Service...." && gcloud services enable dataflow --project ${GCP_PROJECT}
-	@echo "Enabling Artifact Registry..." && gcloud services enable artifactregistry.googleapis.com --project ${GCP_PROJECT}
-	@echo "Building Bucket to Store template...." && gsutil mb -c standard -l ${GCP_REGION} -p ${GCP_PROJECT} ${GCS_PATH}
-	@echo "Building Artifact Repo to Store Docker Image of Code...." && gcloud artifacts repositories create ${TEMPLATE_NAME} \
-    --repository-format=docker \
-    --location=${GCP_REGION} \
-    --async
+# init: ## Build Bucket for Demo and the Artifact Registry -- Run this One time Only!
+# 	@gcloud config set project ${GCP_PROJECT}
+# 	@echo "Enabling Private Google Access in Region ${GCP_REGION} ......"
+# 	@gcloud compute networks subnets update default \
+# 	--region=${GCP_REGION} \
+# 	--enable-private-ip-google-access
+# 	@echo "Enabling Dataflow Service...." && gcloud services enable dataflow --project ${GCP_PROJECT}
+# 	@echo "Enabling Artifact Registry..." && gcloud services enable artifactregistry.googleapis.com --project ${GCP_PROJECT}
+# 	@echo "Building Bucket to Store template...." && gsutil mb -c standard -l ${GCP_REGION} -p ${GCP_PROJECT} ${GCS_PATH}
+# 	@echo "Building Artifact Repo to Store Docker Image of Code...." && gcloud artifacts repositories create ${TEMPLATE_NAME} \
+#     --repository-format=docker \
+#     --location=${GCP_REGION} \
+#     --async
 
 template: ## Build Flex Template Container and Upload Container to GCS Bucket
 	gcloud config set project ${GCP_PROJECT}
