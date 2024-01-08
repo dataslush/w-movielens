@@ -7,8 +7,8 @@ from waltlabs_movielens.user_do_fns import (
     ExtractZip,
     WriteToGCS,
     DownloadFromUrl,
-    ParseRatingsCSV,
-    ParseMoviesCSV,
+    ReadParseRatingsCSV,
+    ReadParseMoviesCSV
 )
 
 
@@ -49,6 +49,11 @@ class MovielensOptions(PipelineOptions):
             help="BigQuery Dataset for MovieLens Data"
         )
 
+        parser.add_argument(
+            "--gcp_project",
+            help="GCP Project Name"
+        )
+
 
 options = MovielensOptions()
 pipeline = beam.Pipeline(options=options)
@@ -73,36 +78,31 @@ files_to_gcs = (
     >> beam.ParDo(WriteToGCS(options.gcs_bucket, options.gcs_output_prefix))
 )
 
-
 _ = (
     files_to_gcs
-    | 'Read Movies CSV' >> beam.io.ReadFromText(
-        f'gs://{options.gcs_bucket}/{options.gcs_output_prefix}/movies.csv'
-    )
-    | 'Parse Movies CSV' >> beam.ParDo(ParseMoviesCSV())
+    | 'Read & Parse Movies CSV' >> beam.ParDo(ReadParseMoviesCSV())
     | 'Write Movies to BigQuery' >> WriteToBigQuery(
         table='movies',
         dataset=options.bq_dataset,
-        project=options.project,
+        project=options.gcp_project,
         schema=MOVIES_SCHEMA,
         create_disposition=beam.io.BigQueryDisposition.CREATE_IF_NEEDED,
-        write_disposition=beam.io.BigQueryDisposition.WRITE_TRUNCATE
+        write_disposition=beam.io.BigQueryDisposition.WRITE_TRUNCATE,
+        method=beam.io.WriteToBigQuery.Method.FILE_LOADS
     )
 )
 
 _ = (
     files_to_gcs
-    | 'Read Ratings CSV' >> beam.io.ReadFromText(
-        f'gs://{options.gcs_bucket}/{options.gcs_output_prefix}/ratings.csv'
-    )
-    | 'Parse Ratings CSV' >> beam.ParDo(ParseRatingsCSV())
+    | 'Read & Parse Ratings CSV' >> beam.ParDo(ReadParseRatingsCSV())
     | 'Write Ratings to BigQuery' >> WriteToBigQuery(
         table='ratings',
-        dataset=options.dataset,
-        project=options.project,
+        dataset=options.bq_dataset,
+        project=options.gcp_project,
         schema=RATINGS_SCHEMA,
         create_disposition=beam.io.BigQueryDisposition.CREATE_IF_NEEDED,
-        write_disposition=beam.io.BigQueryDisposition.WRITE_TRUNCATE
+        write_disposition=beam.io.BigQueryDisposition.WRITE_TRUNCATE,
+        method=beam.io.WriteToBigQuery.Method.FILE_LOADS
     )
 )
 

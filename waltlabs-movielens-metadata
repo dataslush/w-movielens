@@ -16,6 +16,11 @@
         "name": "bq_dataset",
         "label": "Output Dataset",
         "helpText": "BigQuery Output datset"
+      },
+      {
+        "name": "gcp_project",
+        "label": "GCP Project",
+        "helpText": "Project Name"
       }
     ]
   }

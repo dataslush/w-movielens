@@ -52,7 +52,7 @@ run: ## Run the Dataflow Container
     --region ${GCP_REGION} \
     --staging-location ${GCS_PATH}/staging \
 	--temp-location ${GCS_PATH}/temp \
-    --parameters gcs_bucket=${GCS_PATH},gcs_output_prefix='tables',bq_dataset=${BQ_DATASET}
+    --parameters gcs_bucket=${PROJECT_NUMBER}-dataslush-waltlabs-movielens,gcs_output_prefix='tables',bq_dataset=${BQ_DATASET},gcp_project=${GCP_PROJECT}
 
 test-template: ## Test the Integrity of the Flex Container
 	@gcloud config set project ${GCP_PROJECT}
