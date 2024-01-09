@@ -69,6 +69,10 @@ Prerequisite [Install Terraform](https://developer.hashicorp.com/terraform/tutor
     ```
 **Note:** This step will create a GCS bucket, Artifact Registry and BigQuery Dataset in us-central1 region.
 
+# DataFlow Pipeline
+
+Executing these actions will construct and upload the flex template to the artifact registry, initiating the execution of the DataFlow Job.
+
 ## 4. Build DataFlow Flex Template
 ```bash
 make template
@@ -78,3 +82,9 @@ make template
 ```bash
 make run
 ```
+
+# Diagram representing flow of data in pipeline
+![Flow of Data](public/flow-of-data.svg)
+
+# Demo Video on Implementation
+[Demo Video](public/Waltlabs-Movielens.mp4)
