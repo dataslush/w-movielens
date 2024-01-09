@@ -67,4 +67,14 @@ Prerequisite [Install Terraform](https://developer.hashicorp.com/terraform/tutor
     ```bash
     terraform -chdir=terraform-project apply
     ```
-**Note:** This step will create a GCS bucket and BigQuery Dataset in us-central1 region.
+**Note:** This step will create a GCS bucket, Artifact Registry and BigQuery Dataset in us-central1 region.
+
+## 4. Build DataFlow Flex Template
+```bash
+make template
+```
+
+## 5. Run DataFlow Job
+```bash
+make run
+```

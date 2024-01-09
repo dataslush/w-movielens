@@ -1,0 +1,26 @@
+{
+    "name": "Waltlabs-Movielens",
+    "description": "This the template file used for the dataflow job",
+    "parameters": [
+      {
+        "name": "gcs_bucket",
+        "label": "Output destination",
+        "helpText": "The path and filename prefix for writing output files. Example: gs://your-bucket/your-path"
+      },
+      {
+        "name": "gcs_output_prefix",
+        "label": "Output destination prefix",
+        "helpText": "Default value is 'tables'"
+      },
+      {
+        "name": "bq_dataset",
+        "label": "Output Dataset",
+        "helpText": "BigQuery Output datset"
+      },
+      {
+        "name": "gcp_project",
+        "label": "GCP Project",
+        "helpText": "Project Name"
+      }
+    ]
+  }
