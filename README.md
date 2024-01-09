@@ -74,6 +74,8 @@ Prerequisite [Install Terraform](https://developer.hashicorp.com/terraform/tutor
 Executing these actions will construct and upload the flex template to the artifact registry, initiating the execution of the DataFlow Job.
 
 ## 4. Build DataFlow Flex Template
+Before Running below commands change the project_id in Makefile
+
 ```bash
 make template
 ```

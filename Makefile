@@ -1,4 +1,4 @@
-GCP_PROJECT ?= tenacious-camp-357012
+GCP_PROJECT ?= <YourProjectId>
 GCP_REGION ?= us-central1
 TEMPLATE_NAME ?= waltlabs-movielens
 TEMPLATE_TAG ?= 0.1.0
