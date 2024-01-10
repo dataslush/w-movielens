@@ -84,9 +84,16 @@ make template
 ```bash
 make run
 ```
+# Deliverables
 
-# Diagram representing flow of data in pipeline
-![Flow of Data](public/flow-of-data.svg)
+   - ### **Source code for the Dataflow pipeline and any associated scripts.**
+      Source Code for Dataflow pipeline can be found under [waltlabs_movielens](waltlabs_movielens) folder.
+   - ### **A diagram showing the flow of data through various GCP services**
+
+      ![Flow of Data](public/flow-of-data.svg)
+   - ### **Documentation explaining the pipeline design, choice of GCP services, and rationale behind key decisions.**
+      The Document can be found [here](public/key-decisions.md)
+
 
 # Demo Video on Implementation
 [Demo Video](public/Waltlabs-Movielens.mp4)
