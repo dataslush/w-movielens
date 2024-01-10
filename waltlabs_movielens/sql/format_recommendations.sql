@@ -6,7 +6,7 @@ SELECT
   ORDER BY
     predicted_rating DESC
   LIMIT
-    5)
+    5) as recommendation
 FROM (
   SELECT
     userId,
