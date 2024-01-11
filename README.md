@@ -93,6 +93,12 @@ make run
       ![Flow of Data](public/flow-of-data.svg)
    - ### **Documentation explaining the pipeline design, choice of GCP services, and rationale behind key decisions.**
       The Document can be found [here](public/key-decisions.md)
+   
+   - ### **BigQuery ML queires**
+      We didn't have reserved slots to train recommender model from scratch so we have copied already training model from  cloud-training-sessions project 
+      ML Queries can be found [here](waltlabs_movielens/sql/)
 
 # Demo Video on Implementation
 [Demo Video](public/Waltlabs-Movielens.mp4)
+
+[Screenshots for Recommender System](public/screenshots)
