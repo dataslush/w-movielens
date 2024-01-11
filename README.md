@@ -94,6 +94,5 @@ make run
    - ### **Documentation explaining the pipeline design, choice of GCP services, and rationale behind key decisions.**
       The Document can be found [here](public/key-decisions.md)
 
-
 # Demo Video on Implementation
 [Demo Video](public/Waltlabs-Movielens.mp4)
